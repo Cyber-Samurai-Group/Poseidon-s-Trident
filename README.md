@@ -26,7 +26,7 @@ pip install -r requirements.txt
 Alternatively, you can use a virtual environment such as Anaconda or venv.
 
 To clone the repository, use the following command:
-git clone https://github.com/BinaryNinjaCyberSamurai/Poseidon-s-Trident.git
+git clone https://github.com/Cyber-Samurai-Group/Poseidon-s-Trident
 
 ## Usage
 
@@ -62,4 +62,4 @@ We welcome contributions from anyone who is interested in improving **Poseidon's
 
 ## License
 
-**Poseidon's Trident** is licensed under the MIT License. See the [License](https://github.com/BinaryNinjaCyberSamurai/Poseidon-s-Trident/blob/main/LICENSE) file for more information.
+**Poseidon's Trident** is licensed under the MIT License. See the [License](https://github.com/Cyber-Samurai-Group/Poseidon-s-Trident/blob/main/LICENSE) file for more information.
