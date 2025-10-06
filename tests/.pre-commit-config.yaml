@@ -1,0 +1,30 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: ["-c", "bandit.yaml", "-r", "."]
+pre-commit
+### Pre-commit Hooks
+
+This project uses pre-commit to enforce consistent code style and security checks before commits.
+
+Setup:
+pip install -r requirements.txt
+pre-commit install
+
+Usage:
+- Pre-commit hooks run automatically when you commit.
+- If checks fail (black formatting, flake8 linting, or bandit security scan), the commit will be blocked until issues are fixed.
+- To run checks manually:
+pre-commit run --all-files
