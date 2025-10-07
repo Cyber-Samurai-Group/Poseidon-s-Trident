@@ -76,22 +76,20 @@ Poseidon's Trident provides a unified cybersecurity platform with:
 
 ## Quick Start (5 Minutes)
 
-Get Poseidon's Trident running in under 5 minutes using Docker Compose:
+Get Poseidon's Trident running in under 5 minutes using Docker Compose.
 
+Clone the repository:
 ```bash
-# 1. Clone the repository
 git clone https://github.com/Cyber-Samurai-Group/Poseidon-s-Trident.git
 cd Poseidon-s-Trident
-
-# 2. Start with Docker Compose
-docker-compose up -d
-
-# 3. Access the application
-# Web UI: http://localhost:80
-# Default credentials: admin / password
 ```
 
-That's it! The application is now running. Continue reading for detailed setup options.
+Start with Docker Compose:
+```bash
+docker-compose up -d
+```
+
+Access the application at http://localhost:80 with default credentials: `admin` / `password`
 
 ---
 
@@ -132,8 +130,6 @@ Before installation, ensure you have the following installed:
 
 **⏱️ Setup Time: 5-10 minutes**
 
-Docker Compose is the fastest way to get started. It handles all dependencies automatically.
-
 #### Step 1: Install Docker and Docker Compose
 
 **On Windows:**
@@ -148,16 +144,21 @@ Docker Compose is the fastest way to get started. It handles all dependencies au
 4. Verify: `docker --version && docker-compose --version`
 
 **On Linux (Ubuntu/Debian):**
+
+Install Docker and Docker Compose:
 ```bash
-# Install Docker
 sudo apt-get update
 sudo apt-get install docker.io docker-compose -y
+```
 
-# Add your user to docker group (avoid sudo)
+Add your user to docker group to avoid using sudo:
+```bash
 sudo usermod -aG docker $USER
 newgrp docker
+```
 
-# Verify installation
+Verify installation:
+```bash
 docker --version && docker-compose --version
 ```
 
@@ -173,7 +174,6 @@ cd Poseidon-s-Trident
 Create a `.env` file for custom configuration:
 
 ```bash
-# Create .env file
 cat > .env << EOF
 SECRET_KEY=your-secret-key-here
 DATABASE_URL=sqlite:///poseidon.db
@@ -184,31 +184,36 @@ EOF
 
 #### Step 4: Build and Start Services
 
+Build the Docker images:
 ```bash
-# Build the Docker images
 docker-compose build
+```
 
-# Start all services in detached mode
+Start all services in detached mode:
+```bash
 docker-compose up -d
+```
 
-# View logs (optional)
+View logs (optional):
+```bash
 docker-compose logs -f
 ```
 
 #### Step 5: Verify Installation
 
+Check running containers:
 ```bash
-# Check running containers
 docker-compose ps
-
-# Expected output:
-# NAME                COMMAND             STATUS              PORTS
-# webserver           "python main.py"    Up 10 seconds       0.0.0.0:80->80/tcp
-
-# Test the web interface
-curl http://localhost:80/health
-# Expected: {"status": "healthy"}
 ```
+
+Expected output: `webserver "python main.py" Up 10 seconds 0.0.0.0:80->80/tcp`
+
+Test the web interface:
+```bash
+curl http://localhost:80/health
+```
+
+Expected response: `{"status": "healthy"}`
 
 #### Step 6: Access the Application
 
@@ -220,20 +225,28 @@ Open your browser and navigate to:
 
 #### Docker Compose Management
 
+Stop all services:
 ```bash
-# Stop all services
 docker-compose down
+```
 
-# Stop and remove volumes (clean slate)
+Stop and remove volumes (clean slate):
+```bash
 docker-compose down -v
+```
 
-# Restart services
+Restart services:
+```bash
 docker-compose restart
+```
 
-# View logs
+View logs:
+```bash
 docker-compose logs -f webserver
+```
 
-# Update to latest code
+Update to latest code:
+```bash
 git pull
 docker-compose up -d --build
 ```
@@ -243,8 +256,6 @@ docker-compose up -d --build
 ### Local Python Setup
 
 **⏱️ Setup Time: 10-15 minutes**
-
-For development or if you prefer running without Docker:
 
 #### Step 1: Clone Repository
 
@@ -271,24 +282,30 @@ You should see `(venv)` in your terminal prompt.
 
 #### Step 3: Install Dependencies
 
+Upgrade pip:
 ```bash
-# Upgrade pip
 pip install --upgrade pip
+```
 
-# Install required packages
+Install required packages:
+```bash
 pip install -r requirements.txt
+```
 
-# Verify installation
+Verify installation:
+```bash
 pip list
 ```
 
 #### Step 4: Initialize Database
 
+Create necessary directories:
 ```bash
-# Create necessary directories
 mkdir -p logs data backups
+```
 
-# Initialize database (if using SQLite)
+Initialize database (if using SQLite):
+```bash
 python -c "from database import Database; db = Database('sqlite:///poseidon.db')"
 ```
 
@@ -327,21 +344,18 @@ bash start.sh
 
 **⏱️ Setup Time: 5-10 minutes**
 
-Set up the React-based web interface for development:
-
 #### Option 1: Main Frontend
 
 ```bash
 cd frontend
-
-# Install dependencies
 npm install
-
-# Start development server
 npm start
-# Opens at http://localhost:3000
+```
 
-# Build for production
+Opens at http://localhost:3000
+
+Build for production:
+```bash
 npm run build
 ```
 
@@ -349,14 +363,11 @@ npm run build
 
 ```bash
 cd my-react-frontend
-
-# Install dependencies
 npm install
-
-# Start development server
 npm start
-# Opens at http://localhost:3000
 ```
+
+Opens at http://localhost:3000
 
 #### Connecting Frontend to Backend
 
@@ -375,32 +386,28 @@ export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5
 Create a `.env` file in the project root:
 
 ```bash
-# Application Settings
 SECRET_KEY=your-secret-key-change-this-in-production
 DEBUG=False
 LOG_LEVEL=INFO
 
-# Database Configuration
 DATABASE_URL=sqlite:///poseidon.db
-# Or use MySQL: mysql://username:password@localhost:3306/poseidon
-# Or PostgreSQL: postgresql://username:password@localhost:5432/poseidon
 
-# AWS Configuration (optional)
 AWS_ACCESS_KEY_ID=your-access-key
 AWS_SECRET_ACCESS_KEY=your-secret-key
 AWS_DEFAULT_REGION=us-west-2
 
-# Email Settings (for notifications)
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASSWORD=your-app-password
 
-# Security Settings
 SESSION_TIMEOUT=300
 PASSWORD_MIN_LENGTH=8
 ENABLE_2FA=True
 ```
+
+For MySQL: `DATABASE_URL=mysql://username:password@localhost:3306/poseidon`
+For PostgreSQL: `DATABASE_URL=postgresql://username:password@localhost:5432/poseidon`
 
 ### Configuration Files
 
@@ -458,19 +465,23 @@ handlers:
 
 ### Command-Line Interface
 
-Run specific security operations:
-
+Threat detection on target:
 ```bash
-# Threat detection on target
 python PoseidonsTrident_Cybersecurity.py --mode threat_detection --target 192.168.1.1
+```
 
-# Vulnerability assessment
+Vulnerability assessment:
+```bash
 python vulnerability_assessment.py
+```
 
-# Start intrusion detection
+Start intrusion detection:
+```bash
 python ids.py --config ids_config.yaml
+```
 
-# Run encryption test
+Run encryption test:
+```bash
 python encryption.py
 ```
 
@@ -483,13 +494,15 @@ python app.py
 
 **API Endpoints:**
 
+Login:
 ```bash
-# Login
 curl -X POST http://localhost:5000/api/login \
   -H "Content-Type: application/json" \
   -d '{"username":"admin","password":"password"}'
+```
 
-# Register new user
+Register new user:
+```bash
 curl -X POST http://localhost:5000/api/register \
   -H "Content-Type: application/json" \
   -d '{"username":"newuser","password":"securepass123"}'
@@ -497,34 +510,48 @@ curl -X POST http://localhost:5000/api/register \
 
 ### Running Tests
 
+Run all tests:
 ```bash
-# Run all tests
 pytest
+```
 
-# Run with coverage report
+Run with coverage report:
+```bash
 pytest --cov=. --cov-report=html
+```
 
-# Run specific test file
+Run specific test file:
+```bash
 pytest tests/test_encryption.py
+```
 
-# Run with verbose output
+Run with verbose output:
+```bash
 pytest -v
 ```
 
 ### Code Quality Checks
 
+Format code with Black:
 ```bash
-# Format code with Black
 make format
-# or
+```
+or
+```bash
 black .
+```
 
-# Lint with Flake8
+Lint with Flake8:
+```bash
 make lint
-# or
+```
+or
+```bash
 flake8 .
+```
 
-# Security scan with Semgrep
+Security scan with Semgrep:
+```bash
 semgrep --config .semgrep.yaml --error --quiet
 ```
 
@@ -534,13 +561,9 @@ semgrep --config .semgrep.yaml --error --quiet
 
 ### Prerequisites
 
-1. **AWS Account** with appropriate permissions
-2. **AWS CLI configured:**
-   ```bash
-   aws configure
-   # Enter: Access Key ID, Secret Access Key, Region, Output format
-   ```
-3. **Terraform installed** (version 1.0+)
+1. AWS Account with appropriate permissions
+2. AWS CLI configured (run `aws configure`)
+3. Terraform installed (version 1.0+)
 
 ### Step-by-Step Deployment
 
@@ -566,37 +589,31 @@ terraform init
 terraform plan
 ```
 
-This shows what resources will be created:
-- EC2 instance (t2.micro)
-- S3 buckets (data + logs)
-- RDS MySQL database
-- Security groups
-- IAM roles
-- CloudWatch alarms
-- SNS topics
+Resources to be created: EC2 instance (t2.micro), S3 buckets (data + logs), RDS MySQL database, Security groups, IAM roles, CloudWatch alarms, SNS topics
 
 #### 4. Deploy Infrastructure
 
 ```bash
 terraform apply
-# Type 'yes' when prompted
 ```
+
+Type 'yes' when prompted.
 
 #### 5. Deploy Lambda Functions
 
+Package and deploy Lambda function:
 ```bash
-# Package Lambda function
 zip -r lambda.zip lambda_function.py
-
-# Deploy to AWS
 aws lambda create-function \
   --function-name poseidon-trident-security \
   --runtime python3.9 \
   --role arn:aws:iam::YOUR_ACCOUNT_ID:role/lambda-execution-role \
   --handler lambda_function.lambda_handler \
   --zip-file fileb://lambda.zip
+```
 
-# Deploy GuardDuty handler
+Deploy GuardDuty handler:
+```bash
 zip -r guardduty.zip guardduty_handler.py
 aws lambda create-function \
   --function-name poseidon-guardduty-handler \
@@ -608,23 +625,28 @@ aws lambda create-function \
 
 #### 6. Verify Deployment
 
+Check EC2 instance:
 ```bash
-# Check EC2 instance
 aws ec2 describe-instances --filters "Name=tag:Name,Values=Poseidon-Trident-Instance"
+```
 
-# Check S3 buckets
+Check S3 buckets:
+```bash
 aws s3 ls | grep poseidon-trident
+```
 
-# Check Lambda functions
+Check Lambda functions:
+```bash
 aws lambda list-functions | grep poseidon
 ```
 
-#### 7. Clean Up Resources (when done)
+#### 7. Clean Up Resources
 
 ```bash
 terraform destroy
-# Type 'yes' when prompted
 ```
+
+Type 'yes' when prompted.
 
 ---
 
@@ -636,42 +658,44 @@ terraform destroy
 
 **Problem:** `docker-compose: command not found`
 
-**Solutions:**
+On Linux, install docker-compose:
 ```bash
-# On Linux, install docker-compose
 sudo apt-get install docker-compose
+```
 
-# On Mac/Windows, ensure Docker Desktop is running
-# Check: docker --version && docker-compose --version
+On Mac/Windows, ensure Docker Desktop is running. Check with:
+```bash
+docker --version && docker-compose --version
 ```
 
 **Problem:** `Permission denied while trying to connect to Docker daemon`
 
-**Solutions:**
+Add user to docker group (Linux):
 ```bash
-# Add user to docker group (Linux)
 sudo usermod -aG docker $USER
 newgrp docker
+```
 
-# Restart Docker service
+Restart Docker service:
+```bash
 sudo systemctl restart docker
 ```
 
 **Problem:** Port 80 already in use
 
-**Solutions:**
+Find process using port 80:
+
+Windows:
 ```bash
-# Find process using port 80
-# Windows:
 netstat -ano | findstr :80
-
-# Mac/Linux:
-lsof -i :80
-
-# Kill the process or change port in docker-compose.yml:
-# ports:
-#   - "8080:80"
 ```
+
+Mac/Linux:
+```bash
+lsof -i :80
+```
+
+Kill the process or change port in `docker-compose.yml` from `"80:80"` to `"8080:80"`
 
 ---
 
@@ -679,44 +703,39 @@ lsof -i :80
 
 **Problem:** `ModuleNotFoundError: No module named 'X'`
 
-**Solutions:**
+Ensure virtual environment is activated and reinstall dependencies:
+
+Mac/Linux:
 ```bash
-# Ensure virtual environment is activated
-source venv/bin/activate  # Mac/Linux
-venv\Scripts\activate     # Windows
-
-# Reinstall dependencies
+source venv/bin/activate
 pip install -r requirements.txt
+```
 
-# If specific module missing:
-pip install <module-name>
+Windows:
+```bash
+venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
 **Problem:** `python: command not found`
 
-**Solutions:**
+Try `python3` instead:
 ```bash
-# Try python3 instead
 python3 --version
-
-# On Windows, ensure Python is in PATH
-# Add to PATH: C:\Python39\;C:\Python39\Scripts\
-
-# Verify:
-python --version
 ```
+
+On Windows, ensure Python is in PATH: Add `C:\Python39\` and `C:\Python39\Scripts\` to your system PATH.
 
 **Problem:** Virtual environment activation fails
 
-**Solutions:**
+Windows PowerShell execution policy error:
 ```bash
-# Windows PowerShell - execution policy error
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-
-# Then activate:
 venv\Scripts\Activate.ps1
+```
 
-# Alternative: Use Command Prompt instead
+Alternative - use Command Prompt:
+```bash
 venv\Scripts\activate.bat
 ```
 
@@ -726,30 +745,24 @@ venv\Scripts\activate.bat
 
 **Problem:** Database connection errors
 
-**Solutions:**
+For SQLite, ensure directory exists:
 ```bash
-# For SQLite, ensure directory exists
 mkdir -p data/
+```
 
-# Check DATABASE_URL in .env
-DATABASE_URL=sqlite:///data/poseidon.db
+Check `DATABASE_URL` in `.env` is set correctly.
 
-# For MySQL/PostgreSQL, verify service is running
-# MySQL:
+For MySQL/PostgreSQL, verify service is running:
+```bash
 sudo systemctl status mysql
-
-# PostgreSQL:
 sudo systemctl status postgresql
 ```
 
 **Problem:** SQLAlchemy migration errors
 
-**Solutions:**
+Reset database (WARNING: deletes all data):
 ```bash
-# Reset database (WARNING: deletes all data)
 rm poseidon.db
-
-# Recreate tables
 python -c "from database import Database; Database('sqlite:///poseidon.db')"
 ```
 
@@ -759,51 +772,51 @@ python -c "from database import Database; Database('sqlite:///poseidon.db')"
 
 **Problem:** `npm install` fails
 
-**Solutions:**
+Clear cache and reinstall:
 ```bash
-# Clear npm cache
 npm cache clean --force
-
-# Delete node_modules and package-lock.json
 rm -rf node_modules package-lock.json
-
-# Reinstall
 npm install
+```
 
-# If still fails, try:
+If still failing:
+```bash
 npm install --legacy-peer-deps
 ```
 
 **Problem:** Frontend can't connect to backend
 
-**Solutions:**
+Verify backend is running:
 ```bash
-# 1. Verify backend is running
 curl http://localhost:5000/health
+```
 
-# 2. Check CORS settings in app.py
-# Add:
+Check CORS settings in `app.py`:
+```python
 from flask_cors import CORS
 CORS(app)
+```
 
-# 3. Update API URL in frontend
-# frontend/src/config.js:
+Update API URL in `frontend/src/config.js`:
+```javascript
 export const API_BASE_URL = 'http://localhost:5000';
 ```
 
 **Problem:** `npm start` port 3000 already in use
 
-**Solutions:**
+Windows:
 ```bash
-# Find and kill process on port 3000
-# Windows:
 netstat -ano | findstr :3000
 taskkill /PID <PID> /F
+```
 
-# Mac/Linux:
+Mac/Linux:
+```bash
 lsof -ti:3000 | xargs kill -9
+```
 
-# Or use different port:
+Or use different port:
+```bash
 PORT=3001 npm start
 ```
 
@@ -813,47 +826,48 @@ PORT=3001 npm start
 
 **Problem:** Terraform `Error: InvalidClientTokenId`
 
-**Solutions:**
+Verify AWS credentials:
 ```bash
-# Verify AWS credentials
 aws sts get-caller-identity
+```
 
-# Reconfigure AWS CLI
+Reconfigure AWS CLI:
+```bash
 aws configure
+```
 
-# Check credentials file
+Check credentials file:
+```bash
 cat ~/.aws/credentials
 ```
 
 **Problem:** Lambda function deployment fails
 
-**Solutions:**
-```bash
-# Ensure IAM role has proper permissions
-# Required policies:
-# - AWSLambdaBasicExecutionRole
-# - Custom policy for S3, GuardDuty, etc.
+Ensure IAM role has proper permissions: `AWSLambdaBasicExecutionRole` and custom policies for S3, GuardDuty.
 
-# Check function logs
+Check function logs:
+```bash
 aws logs tail /aws/lambda/poseidon-trident-security --follow
 ```
 
 **Problem:** EC2 instance not accessible
 
-**Solutions:**
+Check security group rules:
 ```bash
-# 1. Check security group rules
 aws ec2 describe-security-groups --group-ids <sg-id>
+```
 
-# 2. Ensure port 22 (SSH) is open
-# Add rule if needed:
+Ensure port 22 (SSH) is open:
+```bash
 aws ec2 authorize-security-group-ingress \
   --group-id <sg-id> \
   --protocol tcp \
   --port 22 \
   --cidr 0.0.0.0/0
+```
 
-# 3. Check instance state
+Check instance state:
+```bash
 aws ec2 describe-instances --instance-ids <instance-id>
 ```
 
@@ -863,37 +877,39 @@ aws ec2 describe-instances --instance-ids <instance-id>
 
 **Problem:** UI doesn't launch or shows blank screen
 
-**Solutions:**
+Check if trident.png exists:
 ```bash
-# 1. Check if trident.png exists
 ls -la trident.png
+```
 
-# 2. Install tkinter (if missing)
-# Ubuntu/Debian:
+Install tkinter if missing:
+
+Ubuntu/Debian:
+```bash
 sudo apt-get install python3-tk
+```
 
-# macOS (with Homebrew):
+macOS:
+```bash
 brew install python-tk
+```
 
-# 3. Run with debug output
+Run with debug output:
+```bash
 python UI.py --debug
 ```
 
 **Problem:** Login fails with correct credentials
 
-**Solutions:**
+Default credentials: `admin/password` (SHA-256 hashed)
+
+Reset admin password:
 ```bash
-# 1. Check password hashing
-# Default: admin/password
-# Password is SHA-256 hashed
+python -c "import hashlib; print(hashlib.sha256('password'.encode()).hexdigest())"
+```
 
-# 2. Reset admin password
-python -c "
-import hashlib
-print(hashlib.sha256('password'.encode()).hexdigest())
-"
-
-# 3. Check user_activity.log for errors
+Check logs:
+```bash
 tail -f user_activity.log
 ```
 
@@ -903,16 +919,15 @@ tail -f user_activity.log
 
 **Problem:** Firewall rules not applying
 
-**Solutions:**
+Note: `firewall.py` may be empty and require implementation.
+
+Check firewall rules:
 ```bash
-# 1. Check firewall.py implementation
-# Note: firewall.py is currently empty in the project
-# You may need to implement firewall logic
-
-# 2. Check firewall_rules.json
 cat firewall_rules.json
+```
 
-# 3. Verify firewall service status (on Linux)
+Verify firewall service status (Linux):
+```bash
 sudo ufw status
 sudo iptables -L
 ```
@@ -923,18 +938,19 @@ sudo iptables -L
 
 **Problem:** Logs not being created
 
-**Solutions:**
+Create logs directory:
 ```bash
-# 1. Create logs directory
 mkdir -p logs/
-
-# 2. Check permissions
 chmod 755 logs/
+```
 
-# 3. Verify logging_config.yaml exists
+Verify logging config exists:
+```bash
 ls -la logging_config.yaml
+```
 
-# 4. Check log file manually
+Check log files:
+```bash
 tail -f logs/poseidon.log
 tail -f security.log
 ```
@@ -945,31 +961,37 @@ tail -f security.log
 
 **Problem:** Tests fail with import errors
 
-**Solutions:**
+Install test dependencies:
 ```bash
-# 1. Install test dependencies
 pip install pytest pytest-cov
+```
 
-# 2. Run from project root
+Run from project root:
+```bash
 cd /path/to/Poseidon-s-Trident
 pytest
+```
 
-# 3. Set PYTHONPATH
+Set PYTHONPATH if needed:
+```bash
 export PYTHONPATH="${PYTHONPATH}:$(pwd)"
 pytest
 ```
 
 **Problem:** Specific test failures
 
-**Solutions:**
+Run individual test with verbose output:
 ```bash
-# Run individual test with verbose output
 pytest tests/test_encryption.py -v
+```
 
-# Show print statements
+Show print statements:
+```bash
 pytest -s
+```
 
-# Stop on first failure
+Stop on first failure:
+```bash
 pytest -x
 ```
 
@@ -977,29 +999,22 @@ pytest -x
 
 ### Getting Help
 
-If you're still experiencing issues:
+Check existing issues: [GitHub Issues](https://github.com/Cyber-Samurai-Group/Poseidon-s-Trident/issues)
 
-1. **Check existing issues:** [GitHub Issues](https://github.com/Cyber-Samurai-Group/Poseidon-s-Trident/issues)
-2. **Create a new issue** with:
-   - Operating system and version
-   - Python version (`python --version`)
-   - Full error message
-   - Steps to reproduce
-3. **Check logs:**
-   ```bash
-   # Application logs
-   cat logs/poseidon.log
-   cat security.log
+When creating a new issue, include: OS version, Python version, full error message, steps to reproduce.
 
-   # Docker logs
-   docker-compose logs
-   ```
+Check logs:
+```bash
+cat logs/poseidon.log
+cat security.log
+docker-compose logs
+```
 
-4. **Enable debug mode:**
-   ```bash
-   export DEBUG=True
-   python app.py
-   ```
+Enable debug mode:
+```bash
+export DEBUG=True
+python app.py
+```
 
 ---
 
@@ -1033,22 +1048,29 @@ We welcome contributions from the community! Please see [CONTRIBUTING.md](CONTRI
 
 ### Development Setup
 
+Install dependencies:
 ```bash
-# Install development dependencies
 pip install -r requirements.txt
-pip install -r requirements-dev.txt  # if exists
+pip install -r requirements-dev.txt
+```
 
-# Install pre-commit hooks (recommended)
+Install pre-commit hooks:
+```bash
 pip install pre-commit
 pre-commit install
-
-# Run full test suite
-pytest --cov=. --cov-report=html
-
-# Generate documentation
-mkdocs serve
-# Visit http://localhost:8000
 ```
+
+Run full test suite:
+```bash
+pytest --cov=. --cov-report=html
+```
+
+Generate documentation:
+```bash
+mkdocs serve
+```
+
+Visit http://localhost:8000
 
 ---
 
@@ -1059,7 +1081,7 @@ mkdocs serve
 ```
 MIT License
 
-Copyright (c) 2024 White-Hats
+Copyright (c) 2024 Cyber-Samurai-Group
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1086,7 +1108,7 @@ copies or substantial portions of the Software.
 
 ## Acknowledgments
 
-Built with ❤️ by the White-Hats security community.
+Built by the Cyber-Samurai-Group security community.
 
 Special thanks to all contributors who have helped make Poseidon's Trident a robust cybersecurity framework.
 
