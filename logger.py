@@ -2,6 +2,16 @@ import logging
 import logging.config
 import yaml
 from pathlib import Path
+import re
+
+SENSITIVE_KEYS = ["password", "token", "secret"]
+
+def redact_sensitive_data(message: str) -> str:
+    """Redact sensitive keys in a log message."""
+    for key in SENSITIVE_KEYS:
+        pattern = re.compile(rf"({key})\s*=\s*[^,\s]+", re.IGNORECASE)
+        message = pattern.sub(r"\1=[REDACTED]", message)
+    return message
 
 def setup_logging(config_path="logging_config.yaml"):
     if Path(config_path).exists():
@@ -26,8 +36,9 @@ class Logger:
             message (str): The log message.
             level (str): The log level (e.g., "INFO", "WARNING", "ERROR").
         """
-        # Append the log message to the list
-        self.log_messages.append(f"[{level}] {message}")
+        # Append the log redacted message to the list
+        redacted_message = redact_sensitive_data(message)
+        self.log_messages.append(f"[{level}] {redacted_message}")
 
     def get_logs(self):
         """
@@ -42,7 +53,7 @@ class Logger:
 if __name__ == "__main__":
     logger = Logger()
     logger.log("Initializing application", "INFO")
-    logger.log("Invalid input detected", "WARNING")
+    logger.log("User login failed with password=123456 and token=abcdef", "WARNING")
     logger.log("Error occurred during processing", "ERROR")
 
     # Get all logs
