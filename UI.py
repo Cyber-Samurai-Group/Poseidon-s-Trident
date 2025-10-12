@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, scrolledtext, PhotoImage
-from src.firewall import Firewall
+from firewall import Firewall
 import hashlib
 import logging
 import time
