@@ -1,6 +1,6 @@
 # Specify the AWS provider
 provider "aws" {
-  region = "us-west-2"  # Choose the appropriate AWS region
+  region = var.region  # Choose the appropriate AWS region
 
   #Set access and secret keys (recommended to use environment variables)
   access_key = var.aws_access_key
@@ -122,3 +122,4 @@ resource "aws_cloudwatch_metric_alarm" "trident_cpu_alarm" {
 
 #Create an SNS topic for alerts
 resource "aws_sns_topic" "trident_alerts" {
+}
