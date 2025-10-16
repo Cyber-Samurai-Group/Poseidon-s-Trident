@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Poseidon-s-Trident"
+version = "1.0.0"
+description = "Poseidon's Trident is a comprehensive cybersecurity framework built around three core principles - threat detection, protection, and response. "
+requires-python = ">=3.8"
+dependencies = [
+    "flask",
+    "flask-cors",
+    "scikit-learn",
+    "boto3",
+    "sqlalchemy",
+    "cryptography",
+    "pyyaml",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | venv
+  | env
+  | build
+  | dist
+  | frontend
+  | node_modules
+)/
+'''
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = [
+    "-ra",
+    "-q",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=.",
+    "--cov-report=term-missing",
+]
+testpaths = [
+    "tests",
+    "test",
+]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "E266", "W503", "E501"]
+exclude = [".git", "__pycache__", ".venv", "venv", "env", "build", "dist", "frontend", "node_modules"]
+max-complexity = 10
+per-file-ignores = [
+    "__init__.py:F401",
+]
