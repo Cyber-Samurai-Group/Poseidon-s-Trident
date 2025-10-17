@@ -8,15 +8,7 @@ This folder contains the official logo variants for **Poseidon’s Trident**, a 
 
 | Variant | Format | Description |
 |----------|---------|--------------|
-| **Logo 1** |`.png` | Sleek digital trident made of circuits, representing the fusion of Poseidon's power and cybersecurity technology. |
-| **Logo 2** |`.png` | Same digital trident design, but with a **hacker silhouette in a black hoodie** subtly blended into the background. |
-| **Logo 3** |`.png` | Trident Shield version — emblematic shield with flowing binary waves symbolizing defense and vigilance. |
-| **Logo 4** |`.png` | Trident Shield extended version — emblematic shield with flowing binary waves symbolizing defense and vigilance with poseidon in back of shield. |
-| **Logo 5** |`.png` | Trident Shield exteded version — emblematic shield with rotating binary numbers symbolizing defense and vigilance with poseidon in back of shield. |
-| **Logo 6** |`.png` |  Sleek digital trident made of circuits, representing the fusion of Poseidon's power and cybersecurity technology. Integrated Poseidon silhouette in blue circuit theme. |
-| **Logo 7** |`.png` |   Sleek digital trident made of circuits, representing the fusion of Poseidon's power and cybersecurity technology. Integrated Poseidon silhouette in blue circuit theme. |
-| **Logo 8** |`.png` |   Sleek digital trident made of circuits, representing the fusion of Poseidon's power and cybersecurity technology. Integrated Poseidon silhouette in blue circuit theme. |
-
+| **Logo** |`.png` | Trident Shield version — emblematic shield with rotating binary numbers symbolizing defense and vigilance with poseidon in back of shield. |
 
 ---
 
@@ -25,14 +17,7 @@ This folder contains the official logo variants for **Poseidon’s Trident**, a 
 ```
 assets/logos/
 │
-├─ logo1.png
-├─ logo2.png
-├─ logo3.png
-├─ logo4.png
-├─ logo5.png
-├─ logo6.png
-├─ logo7.png
-├─ logo8.png
+├─ logo.png
 └─ README.md
 ```
 
@@ -40,14 +25,7 @@ assets/logos/
 
 ## 🖼️ Preview (example)
 
-![Logo 1 Preview](assets\logos\logo1.png)
-![Logo 2 Preview](assets\logos\logo2.png)
-![Logo 3 Preview](assets\logos\logo3.png)
-![Logo 4 Preview](assets\logos\logo4.png)
-![Logo 5 Preview](assets\logos\logo5.png)
-![Logo 6 Preview](assets\logos\logo6.png)
-![Logo 7 Preview](assets\logos\logo7.png)
-![Logo 8 Preview](assets\logos\logo8.png)
+![Logo Preview](assets\logos\logo.png)
 
 ---
 
