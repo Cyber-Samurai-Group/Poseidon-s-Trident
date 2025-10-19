@@ -25,8 +25,6 @@ assets/logos/
 
 ## 🖼️ Preview (example)
 
-![Logo Preview](assets\logos\logo.png)
-
 ---
 
 ## 💡 Usage Guidelines
