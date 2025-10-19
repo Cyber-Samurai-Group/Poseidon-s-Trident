@@ -23,8 +23,6 @@ assets/logos/
 
 ---
 
-## 🖼️ Preview (example)
-
 ---
 
 ## 💡 Usage Guidelines
