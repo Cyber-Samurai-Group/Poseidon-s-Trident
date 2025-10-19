@@ -1,5 +1,7 @@
 # Poseidon's Trident 🔱
 
+https://github.com/Cyber-Samurai-Group/Poseidon-s-Trident/blob/main/assets/logos/logo.png
+
 **Poseidon's Trident** is a comprehensive cybersecurity framework built around three core principles - threat detection, protection, and response. Harness the power of the sea god's trident to secure your network and cloud infrastructure.
 
 [![CI](https://github.com/Cyber-Samurai-Group/Poseidon-s-Trident/workflows/CI/badge.svg)](https://github.com/Cyber-Samurai-Group/Poseidon-s-Trident/actions)
