@@ -1110,14 +1110,6 @@ copies or substantial portions of the Software.
 
 ---
 
-## Acknowledgments
-
-Built by the Cyber-Samurai-Group security community.
-
-Special thanks to all contributors who have helped make Poseidon's Trident a robust cybersecurity framework.
-
----
-
 **⚡ Quick Links:**
 - [Quick Start](#quick-start-5-minutes)
 - [Docker Setup](#docker-compose-setup-recommended)
