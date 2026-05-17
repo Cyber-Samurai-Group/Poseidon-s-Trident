@@ -29,3 +29,9 @@ jobs:
           GH_TOKEN: 
           ISSUE_NUMBER: 
           RESPONSE: 
+      - name: Comment with AI summary
+        run:
+        env:
+          GH_TOKEN: 
+          ISSUE_NUMBER:
+          RESPONSE:
